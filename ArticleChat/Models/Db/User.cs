@@ -14,5 +14,6 @@ namespace ArticleChat.Models.Db
         [Required]
         [StringLength(4)]
         public string? Password { get; set; }
+        public string? Role { get; set; }
     }
 }
