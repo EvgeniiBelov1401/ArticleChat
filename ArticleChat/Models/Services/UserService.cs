@@ -23,7 +23,6 @@ namespace ArticleChat.Models.Services
             {
                 existingUser.Nickname = user.Nickname;
                 existingUser.Password = user.Password;
-                // Не меняем роль напрямую
             }
         }
 

@@ -14,6 +14,9 @@ namespace ArticleChat.Models.Db
         [Required]
         [StringLength(4)]
         public string? Password { get; set; }
-        public string Role { get; set; } = "Пользователь";
+
+        [Required]
+        public int RoleId { get; set; }
+        public Role? Role { get; set; }
     }
 }
