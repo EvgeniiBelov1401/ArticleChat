@@ -4,5 +4,6 @@ namespace ArticleChat.Controllers
 {
     public class CommentController : Controller
     {
+        
     }
 }
