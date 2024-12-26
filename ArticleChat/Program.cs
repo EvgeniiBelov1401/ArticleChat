@@ -4,6 +4,7 @@ using ArticleChat.Models.Services;
 using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ArticleChat
 {
@@ -23,6 +24,15 @@ namespace ArticleChat
             builder.Services.AddScoped<ITagService, TagService>();
             builder.Services.AddSingleton<IUserService, UserService>();
             builder.Services.AddSingleton<IArticleService, ArticleService>();
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Auth/Login";
+                options.LogoutPath = "/Auth/Logout";
+            });
+
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
 
