@@ -3,6 +3,13 @@
     public class Role
     {
         public int Id { get; set; }
-        public string? UserRole { get; set; }
+        public UserRole UserRole { get; set; }
+    }
+
+    public enum UserRole
+    {
+        Admin,
+        Moderator,
+        User
     }
 }
