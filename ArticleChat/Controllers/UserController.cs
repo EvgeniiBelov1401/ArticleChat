@@ -1,6 +1,7 @@
 ﻿using ArticleChat.Models.Db;
 using ArticleChat.Models.Interfaces;
 using ArticleChat.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArticleChat.Controllers
@@ -38,6 +39,7 @@ namespace ArticleChat.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult GetAllUsers()
         {
@@ -45,6 +47,7 @@ namespace ArticleChat.Controllers
             return Ok(users);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public IActionResult GetUserById(int id)
         {
