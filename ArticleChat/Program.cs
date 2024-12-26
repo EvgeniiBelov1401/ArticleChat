@@ -1,4 +1,6 @@
 using ArticleChat.Models;
+using ArticleChat.Models.Interfaces;
+using ArticleChat.Models.Services;
 using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,11 +13,16 @@ namespace ArticleChat
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ArticleChatDbContext>(options =>
             options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddControllers();
+            builder.Services.AddScoped<ICommentService, CommentService>();
+            builder.Services.AddScoped<ITagService, TagService>();
+            builder.Services.AddSingleton<IUserService, UserService>();
+            builder.Services.AddSingleton<IArticleService, ArticleService>();
 
             var app = builder.Build();
 

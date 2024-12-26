@@ -6,7 +6,7 @@ namespace ArticleChat.Models.Db
     public class Comment
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(1000)]

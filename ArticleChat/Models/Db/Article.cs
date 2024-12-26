@@ -6,7 +6,7 @@ namespace ArticleChat.Models.Db
     public class Article
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(10000)]

@@ -5,7 +5,7 @@ namespace ArticleChat.Models.Db
     public class User
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -14,6 +14,6 @@ namespace ArticleChat.Models.Db
         [Required]
         [StringLength(4)]
         public string? Password { get; set; }
-        public string? Role { get; set; }
+        public string Role { get; set; } = "Пользователь";
     }
 }
