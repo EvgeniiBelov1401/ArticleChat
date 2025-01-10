@@ -56,6 +56,9 @@ namespace ArticleChat
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/Error/NotFound");
+            app.UseExceptionHandler("/Error/GeneralError");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
