@@ -1,16 +1,24 @@
-﻿@model ArticleChat.Models.Db.User
+﻿@{
+    ViewData["Title"] = "Вход";
+}
 
-<h1>Авторизация</h1>
+<h2>Вход</h2>
+
 <form asp-action="Login" method="post">
     <div>
-        <label>Nickname</label>
-        <input asp-for="Nickname" />
-        <span asp-validation-for="Nickname"></span>
+        <label>Логин</label>
+        <input type="text" name="username" required />
     </div>
     <div>
-        <label>Password</label>
-        <input asp-for="Password" type="password" />
-        <span asp-validation-for="Password"></span>
+        <label>Пароль</label>
+        <input type="password" name="password" required />
     </div>
-    <button type="submit">Вход</button>
+    <button type="submit">Войти</button>
 </form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div>
+        <p>@ViewData["ErrorMessage"]</p>
+    </div>
+}

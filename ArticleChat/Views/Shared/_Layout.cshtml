@@ -33,9 +33,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Role">Роли</a>
                         </li>
-                        <li>
-                            <a href="javascript:void(0);" onclick="logout()">Выйти</a>
-                        </li>
+                        <!-- Проверка, вошел ли пользователь в систему -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+                                    <button type="submit">Выйти</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a asp-area="" asp-controller="Account" asp-action="Login">Вход</a></li>
+                        }
+
+                        <!-- Проверка на наличие роли администратора -->
+                        @if (User.IsInRole("Администратор"))
+                        {
+                            <li><a asp-area="" asp-controller="Admin" asp-action="Dashboard">Административная панель</a></li>
+                        }
                     </ul>
                 </div>
             </div>

@@ -30,6 +30,7 @@ namespace ArticleChat
             {
                 options.LoginPath = "/Account/Login";
                 options.AccessDeniedPath = "/Account/AccessDenied";
+                options.LogoutPath = "/Account/Logout";
             });
 
             builder.Services.AddAuthorization(options =>
