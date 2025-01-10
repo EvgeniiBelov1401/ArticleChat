@@ -1,0 +1,12 @@
+﻿@model ArticleChat.Models.Db.Comment
+
+<h1>Создать комментарий</h1>
+<form asp-action="Create">
+    <div>
+        <label>Комментарий</label>
+        <input asp-for="CommentText" />
+        <span asp-validation-for="CommentText"></span>
+    </div>
+    <button type="submit">Создать</button>
+</form>
+<a asp-action="Index">Назад</a>

@@ -25,14 +25,26 @@ namespace ArticleChat
             builder.Services.AddSingleton<IUserService, UserService>();
             builder.Services.AddSingleton<IArticleService, ArticleService>();
 
-            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(options =>
+            builder.Services.AddAuthentication("MyCookieAuth")
+            .AddCookie("MyCookieAuth", options =>
             {
-                options.LoginPath = "/Auth/Login";
-                options.LogoutPath = "/Auth/Logout";
+                options.LoginPath = "/Account/Login";
+                options.AccessDeniedPath = "/Account/AccessDenied";
             });
 
-            builder.Services.AddAuthorization();
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+            });
+
+            //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //.AddCookie(options =>
+            //{
+            //    options.LoginPath = "/Auth/Login";
+            //    options.LogoutPath = "/Auth/Logout";
+            //});
+
+            //builder.Services.AddAuthorization();
 
             var app = builder.Build();
 

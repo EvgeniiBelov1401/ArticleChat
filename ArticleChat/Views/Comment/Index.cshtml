@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ArticleChat.Models.Db.Comment>
+
+<h1>Комментарии</h1>
+<a asp-action="Create">Создать новый комментарий</a>
+<table>
+    <thead>
+        <tr>
+            <th>Комментарий</th>
+            <th>Пользователь</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model)
+        {
+            <tr>
+                <td>@comment.CommentText</td>
+                <td>@comment.User.Nickname</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@comment.Id">Редактировать</a>
+                    <a asp-action="Delete" asp-route-id="@comment.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

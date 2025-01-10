@@ -1,0 +1,12 @@
+﻿@model ArticleChat.Models.Db.Role
+
+<h1>Создать роль</h1>
+<form asp-action="Create">
+    <div>
+        <label>Роль</label>
+        <input asp-for="UserRole" />
+        <span asp-validation-for="UserRole"></span>
+    </div>    
+    <button type="submit">Создать</button>
+</form>
+<a asp-action="Index">Назад</a>

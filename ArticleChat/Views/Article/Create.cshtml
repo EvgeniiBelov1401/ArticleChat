@@ -1,0 +1,17 @@
+﻿@model ArticleChat.Models.Db.Article
+
+<h1>Создать статью</h1>
+<form asp-action="Create">
+    <div>
+        <label>Содержание</label>
+        <input asp-for="Content" />
+        <span asp-validation-for="Content"></span>
+    </div>
+    <div>
+        <label>Тег</label>
+        <input asp-for="Tag" type="text" />
+        <span asp-validation-for="Tag"></span>
+    </div>
+    <button type="submit">Создать</button>
+</form>
+<a asp-action="Index">Назад</a>

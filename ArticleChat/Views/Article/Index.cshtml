@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ArticleChat.Models.Db.Article>
+
+<h1>Статьи</h1>
+<a asp-action="Create">Создать новую статью</a>
+<table>
+    <thead>
+        <tr>
+            <th>Содержание</th>
+            <th>Тег</th>
+            <th>Пользователь</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in Model)
+        {
+            <tr>
+                <td>@article.Content</td>
+                <td>@article.Tag.TagText</td>
+                <td>@article.User.Nickname</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@article.Id">Редактировать</a>
+                    <a asp-action="Delete" asp-route-id="@article.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

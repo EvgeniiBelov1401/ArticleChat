@@ -1,0 +1,17 @@
+﻿@model ArticleChat.Models.Db.User
+
+<h1>Создать пользователя</h1>
+<form asp-action="Create">
+    <div>
+        <label>Никнейм</label>
+        <input asp-for="Nickname" />
+        <span asp-validation-for="Nickname"></span>
+    </div>
+    <div>
+        <label>Пароль</label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <button type="submit">Создать</button>
+</form>
+<a asp-action="Index">Назад</a>

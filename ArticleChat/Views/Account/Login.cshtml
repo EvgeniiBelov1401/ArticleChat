@@ -1,0 +1,16 @@
+﻿@model ArticleChat.Models.Db.User
+
+<h1>Авторизация</h1>
+<form asp-action="Login" method="post">
+    <div>
+        <label>Nickname</label>
+        <input asp-for="Nickname" />
+        <span asp-validation-for="Nickname"></span>
+    </div>
+    <div>
+        <label>Password</label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <button type="submit">Вход</button>
+</form>
