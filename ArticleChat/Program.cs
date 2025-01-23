@@ -5,6 +5,7 @@ using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using NLog.Web;
 
 namespace ArticleChat
 {
@@ -13,6 +14,9 @@ namespace ArticleChat
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Logging.ClearProviders();
+            builder.Host.UseNLog();
 
             builder.Services.AddDbContext<ArticleChatDbContext>(options =>
             options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -37,15 +41,6 @@ namespace ArticleChat
             {
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
             });
-
-            //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            //.AddCookie(options =>
-            //{
-            //    options.LoginPath = "/Auth/Login";
-            //    options.LogoutPath = "/Auth/Logout";
-            //});
-
-            //builder.Services.AddAuthorization();
 
             var app = builder.Build();
 
