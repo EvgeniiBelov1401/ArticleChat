@@ -3,13 +3,18 @@ using ArticleChat.Models.Interfaces;
 
 namespace ArticleChat.Models.Services
 {
+
     public class CommentService : ICommentService
     {
         private readonly List<Comment> _comments = new List<Comment>(); 
 
         public async Task<IEnumerable<Comment>> GetAllCommentsAsync() => await Task.FromResult(_comments);
 
-        public async Task<Comment> GetCommentByIdAsync(int id) => await Task.FromResult(_comments.FirstOrDefault(c => c.Id == id));
+        public async Task<Comment> GetCommentByIdAsync(int id)
+        {
+            var awaitMethod= await Task.FromResult(_comments.FirstOrDefault(c => c.Id == id));
+            return awaitMethod!;
+        }
 
         public async Task<Comment> CreateCommentAsync(Comment comment)
         {
@@ -24,7 +29,8 @@ namespace ArticleChat.Models.Services
             {
                 existingComment.CommentText = comment.CommentText;
             }
-            return await Task.FromResult(existingComment);
+            var awaitMethod= await Task.FromResult(existingComment);
+            return awaitMethod!;
         }
 
         public async Task DeleteCommentAsync(int id)

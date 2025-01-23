@@ -8,15 +8,9 @@ namespace ArticleChat.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArticleController : ControllerBase
+    public class ArticleController(IArticleService _articleService) : ControllerBase
     {
-        private readonly IArticleService _articleService;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        public ArticleController(IArticleService articleService)
-        {
-            _articleService = articleService;
-        }
 
         [HttpPost]
         public IActionResult Create([FromBody] Article article)

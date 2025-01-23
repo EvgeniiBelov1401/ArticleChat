@@ -8,6 +8,6 @@ namespace ArticleChat.Models.Interfaces
         void Edit(User user);
         void Delete(int id);
         IEnumerable<User> GetAllUsers();
-        User GetUserById(int id);
+        User? GetUserById(int? id);
     }
 }

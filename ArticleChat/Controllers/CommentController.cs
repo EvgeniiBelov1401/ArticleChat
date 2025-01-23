@@ -7,15 +7,9 @@ namespace ArticleChat.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CommentController : ControllerBase
+    public class CommentController(ICommentService _commentService) : ControllerBase
     {
-        private readonly ICommentService _commentService;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        public CommentController(ICommentService commentService)
-        {
-            _commentService = commentService;
-        }
 
         [HttpPost]
         public async Task<ActionResult<Comment>> Create(Comment comment)

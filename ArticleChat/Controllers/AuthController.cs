@@ -27,8 +27,8 @@ namespace ArticleChat.Controllers
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.Nickname),
-                    new Claim(ClaimTypes.Role, user.Role.UserRole.ToString())
+                    new Claim(ClaimTypes.Name, user.Nickname!),
+                    new Claim(ClaimTypes.Role, user.Role!.UserRole.ToString())
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, "UserIdentity");

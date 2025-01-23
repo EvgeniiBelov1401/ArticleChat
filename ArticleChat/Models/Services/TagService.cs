@@ -9,7 +9,11 @@ namespace ArticleChat.Models.Services
 
         public async Task<IEnumerable<Tag>> GetAllTagsAsync() => await Task.FromResult(_tags);
 
-        public async Task<Tag> GetTagByIdAsync(int id) => await Task.FromResult(_tags.FirstOrDefault(t => t.Id == id));
+        public async Task<Tag> GetTagByIdAsync(int id)
+        {
+            var awaitMethod = await Task.FromResult(_tags.FirstOrDefault(t => t.Id == id));
+            return awaitMethod!;
+        }
 
         public async Task<Tag> CreateTagAsync(Tag tag)
         {
@@ -25,7 +29,8 @@ namespace ArticleChat.Models.Services
             {
                 existingTag.TagText = tag.TagText;
             }
-            return await Task.FromResult(existingTag);
+            var awaitMethod = await Task.FromResult(existingTag);
+            return awaitMethod!;
         }
 
         public async Task DeleteTagAsync(int id)

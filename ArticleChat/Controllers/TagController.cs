@@ -8,15 +8,9 @@ namespace ArticleChat.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TagController : ControllerBase
+    public class TagController(ITagService _tagService) : ControllerBase
     {
-        private readonly ITagService _tagService;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        public TagController(ITagService tagService)
-        {
-            _tagService = tagService;
-        }
 
         [HttpPost]
         public async Task<ActionResult<Tag>> Create(Tag tag)

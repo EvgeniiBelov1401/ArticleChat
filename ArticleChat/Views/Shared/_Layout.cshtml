@@ -25,7 +25,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Comment" asp-action="Comment">Комментарии</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Teg">Теги</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Tag">Теги</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="User">Пользователи</a>
@@ -34,7 +34,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Role">Роли</a>
                         </li>
                         <!-- Проверка, вошел ли пользователь в систему -->
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity!.IsAuthenticated)
                         {
                             <li>
                                 <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
@@ -44,7 +44,7 @@
                         }
                         else
                         {
-                            <li><a asp-area="" asp-controller="Account" asp-action="Login">Вход</a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Вход</a></li>
                         }
 
                         <!-- Проверка на наличие роли администратора -->
@@ -65,7 +65,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.Now.Year - Разработка персонального блога </a>
+            &copy; @DateTime.Now.Year - Разработка персонального блога 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

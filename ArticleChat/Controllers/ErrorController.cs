@@ -17,7 +17,7 @@ namespace ArticleChat.Controllers
         }
 
         // Страница ресурса не найдена
-        public IActionResult NotFound()
+        public new IActionResult NotFound()
         {
             Logger.Info($"Page is not found.");
             return View();

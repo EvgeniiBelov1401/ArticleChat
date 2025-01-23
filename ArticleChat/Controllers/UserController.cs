@@ -9,15 +9,9 @@ namespace ArticleChat.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(IUserService _userService) : ControllerBase
     {
-        private readonly IUserService _userService;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        public UserController(IUserService userService)
-        {
-            _userService = userService;
-        }
 
         [HttpPost("register")]
         public IActionResult Register([FromBody] User user)

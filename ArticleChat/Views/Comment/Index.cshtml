@@ -15,10 +15,10 @@
         {
             <tr>
                 <td>@comment.CommentText</td>
-                <td>@comment.User.Nickname</td>
+                <td>@comment?.User?.Nickname</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@comment.Id">Редактировать</a>
-                    <a asp-action="Delete" asp-route-id="@comment.Id">Удалить</a>
+                    <a asp-action="Edit" asp-route-id="@comment?.Id">Редактировать</a>
+                    <a asp-action="Delete" asp-route-id="@comment?.Id">Удалить</a>
                 </td>
             </tr>
         }

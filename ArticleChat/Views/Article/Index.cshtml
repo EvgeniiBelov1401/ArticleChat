@@ -16,11 +16,11 @@
         {
             <tr>
                 <td>@article.Content</td>
-                <td>@article.Tag.TagText</td>
-                <td>@article.User.Nickname</td>
+                <td>@article?.Tag?.TagText</td>
+                <td>@article?.User?.Nickname</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@article.Id">Редактировать</a>
-                    <a asp-action="Delete" asp-route-id="@article.Id">Удалить</a>
+                    <a asp-action="Edit" asp-route-id="@article?.Id">Редактировать</a>
+                    <a asp-action="Delete" asp-route-id="@article?.Id">Удалить</a>
                 </td>
             </tr>
         }
