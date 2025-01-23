@@ -1,6 +1,7 @@
 ﻿using ArticleChat.Models.Db;
 using ArticleChat.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using NLog;
 
 namespace ArticleChat.Controllers
 {
@@ -9,6 +10,7 @@ namespace ArticleChat.Controllers
     public class CommentController : ControllerBase
     {
         private readonly ICommentService _commentService;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public CommentController(ICommentService commentService)
         {
@@ -19,6 +21,7 @@ namespace ArticleChat.Controllers
         public async Task<ActionResult<Comment>> Create(Comment comment)
         {
             var createdComment = await _commentService.CreateCommentAsync(comment);
+            Logger.Info($"Comment {comment.CommentText} created successfully.");
             return CreatedAtAction(nameof(GetComment), new { id = createdComment.Id }, createdComment);
         }
 
@@ -28,13 +31,15 @@ namespace ArticleChat.Controllers
             comment.Id = id;
             var existingComment = await _commentService.UpdateCommentAsync(comment);
             if (existingComment == null) return NotFound();
+            Logger.Info($"Comment {comment.CommentText} updated successfully.");
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(int id, Comment comment)
         {
             await _commentService.DeleteCommentAsync(id);
+            Logger.Info($"Comment {comment.CommentText} deleted successfully.");
             return NoContent();
         }
 

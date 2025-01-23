@@ -2,11 +2,14 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using NLog;
+using ArticleChat.Models.Db;
 
 namespace ArticleChat.Controllers
 {
     public class AccountController : Controller
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         public IActionResult Login()
         {
             return View();
@@ -25,10 +28,12 @@ namespace ArticleChat.Controllers
 
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                Logger.Info($"User {username} as admin entered successfully.");
                 return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError("", "Неверные учетные данные");
+            Logger.Info($"User {username} is not admin.");
             return View();
         }
 

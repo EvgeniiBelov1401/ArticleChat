@@ -1,6 +1,8 @@
 ﻿using ArticleChat.Models.Db;
 using ArticleChat.Models.Interfaces;
+using Azure;
 using Microsoft.AspNetCore.Mvc;
+using NLog;
 
 namespace ArticleChat.Controllers
 {
@@ -9,6 +11,7 @@ namespace ArticleChat.Controllers
     public class TagController : ControllerBase
     {
         private readonly ITagService _tagService;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public TagController(ITagService tagService)
         {
@@ -19,6 +22,7 @@ namespace ArticleChat.Controllers
         public async Task<ActionResult<Tag>> Create(Tag tag)
         {
             var createdTag = await _tagService.CreateTagAsync(tag);
+            Logger.Info($"Tag {tag.TagText} created successfully.");
             return CreatedAtAction(nameof(GetTag), new { id = createdTag.Id }, createdTag);
         }
 
@@ -28,13 +32,15 @@ namespace ArticleChat.Controllers
             tag.Id = id;
             var existingTag = await _tagService.UpdateTagAsync(tag);
             if (existingTag == null) return NotFound();
+            Logger.Info($"Tag {tag.TagText} updated successfully.");
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(int id, Tag tag)
         {
             await _tagService.DeleteTagAsync(id);
+            Logger.Info($"Tag {tag.TagText} deleted successfully.");
             return NoContent();
         }
 

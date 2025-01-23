@@ -3,6 +3,7 @@ using ArticleChat.Models.Interfaces;
 using ArticleChat.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NLog;
 
 namespace ArticleChat.Controllers
 {
@@ -11,6 +12,7 @@ namespace ArticleChat.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public UserController(IUserService userService)
         {
@@ -21,6 +23,7 @@ namespace ArticleChat.Controllers
         public IActionResult Register([FromBody] User user)
         {
             _userService.Register(user);
+            Logger.Info($"User {user.Nickname} registered successfully.");
             return Ok(user);
         }
 
@@ -29,13 +32,15 @@ namespace ArticleChat.Controllers
         {
             if (id != user.Id) return BadRequest();
             _userService.Edit(user);
+            Logger.Info($"User {user.Nickname} created successfully.");
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, [FromBody] User user)
         {
             _userService.Delete(id);
+            Logger.Info($"User {user.Nickname} deleted successfully.");
             return NoContent();
         }
 

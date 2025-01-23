@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NLog;
 using System.Security.Claims;
 
 namespace ArticleChat.Controllers
@@ -9,6 +10,7 @@ namespace ArticleChat.Controllers
     public class AuthController : Controller
     {
         private readonly ArticleChatDbContext _context;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public AuthController(ArticleChatDbContext context)
         {
@@ -33,13 +35,17 @@ namespace ArticleChat.Controllers
                 var claimsIdentity = new ClaimsIdentity(claims, "UserIdentity");
                 await HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
 
+                Logger.Info($"User {nickname} authorized.");
+
                 return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError("", "Неверное имя пользователя или пароль");
+            Logger.Info($"User {nickname} is not authorized.");
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
