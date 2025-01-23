@@ -1,4 +1,3 @@
-using ArticleChat.Models;
 using ArticleChat.Models.Interfaces;
 using ArticleChat.Models.Services;
 using FluentAssertions.Common;

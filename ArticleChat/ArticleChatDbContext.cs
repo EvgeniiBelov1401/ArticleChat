@@ -1,7 +1,7 @@
 ﻿using ArticleChat.Models.Db;
 using Microsoft.EntityFrameworkCore;
 
-namespace ArticleChat.Models
+namespace ArticleChat
 {
     public sealed class ArticleChatDbContext : DbContext
     {
