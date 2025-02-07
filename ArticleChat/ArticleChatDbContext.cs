@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ArticleChat
 {
-    public sealed class ArticleChatDbContext : DbContext
+    public sealed class ArticleChatDbContext(DbContextOptions<ArticleChatDbContext> options) : DbContext(options)
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Article> Articles { get; set; }
@@ -11,10 +11,6 @@ namespace ArticleChat
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Role> Roles { get; set; }
 
-        public ArticleChatDbContext(DbContextOptions<ArticleChatDbContext> options) : base(options)
-        {
-
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

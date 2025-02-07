@@ -6,15 +6,10 @@ using System.Security.Claims;
 
 namespace ArticleChat.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController(ArticleChatDbContext context) : Controller
     {
-        private readonly ArticleChatDbContext _context;
+        private readonly ArticleChatDbContext _context = context;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-        public AuthController(ArticleChatDbContext context)
-        {
-            _context = context;
-        }
 
         [HttpPost]
         public async Task<IActionResult> Login(string nickname, string password)
@@ -27,8 +22,8 @@ namespace ArticleChat.Controllers
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.Nickname!),
-                    new Claim(ClaimTypes.Role, user.Role!.UserRole.ToString())
+                    new(ClaimTypes.Name, user.Nickname!),
+                    new(ClaimTypes.Role, user.Role!.UserRole.ToString())
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, "UserIdentity");

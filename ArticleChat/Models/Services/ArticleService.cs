@@ -5,7 +5,7 @@ namespace ArticleChat.Models.Services
 {
     public class ArticleService : IArticleService
     {
-        private readonly List<Article> _articles = new List<Article>();
+        private readonly List<Article> _articles = [];
         private int _currentId = 1;
 
         public void Create(Article article)

@@ -6,7 +6,7 @@ namespace ArticleChat.Models.Services
 
     public class CommentService : ICommentService
     {
-        private readonly List<Comment> _comments = new List<Comment>(); 
+        private readonly List<Comment> _comments = []; 
 
         public async Task<IEnumerable<Comment>> GetAllCommentsAsync() => await Task.FromResult(_comments);
 

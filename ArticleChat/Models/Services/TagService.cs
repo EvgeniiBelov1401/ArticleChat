@@ -5,7 +5,7 @@ namespace ArticleChat.Models.Services
 {
     public class TagService : ITagService
     {
-        private readonly List<Tag> _tags = new List<Tag>();
+        private readonly List<Tag> _tags = [];
 
         public async Task<IEnumerable<Tag>> GetAllTagsAsync() => await Task.FromResult(_tags);
 

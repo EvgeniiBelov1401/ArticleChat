@@ -36,10 +36,8 @@ namespace ArticleChat
                 options.LogoutPath = "/Account/Logout";
             });
 
-            builder.Services.AddAuthorization(options =>
-            {
-                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
-            });
+            builder.Services.AddAuthorizationBuilder()
+                .AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
 
             var app = builder.Build();
 

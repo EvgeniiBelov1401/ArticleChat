@@ -7,7 +7,7 @@ namespace ArticleChat.Models.Services
 {
     public class UserService : IUserService
     {
-        private readonly List<User> _users = new List<User>();
+        private readonly List<User> _users = [];
         private int _currentId = 1;
 
         public void Register(User user)
