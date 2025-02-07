@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleChat", "ArticleChat\ArticleChat.csproj", "{74FA01B6-4D9F-4962-84E5-70EF32C0C7AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{0D18FFE3-8545-4CFC-850E-8C4703A0B9D5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{74FA01B6-4D9F-4962-84E5-70EF32C0C7AB} = {74FA01B6-4D9F-4962-84E5-70EF32C0C7AB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
