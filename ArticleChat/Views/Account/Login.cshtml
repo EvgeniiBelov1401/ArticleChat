@@ -7,13 +7,13 @@
 <form asp-action="Login" method="post">
     <div>
         <label>Логин</label>
-        <input type="text" name="username" required />
+        <input type="text" placeholder="Введите ник" name="username" required />
     </div>
     <div>
         <label>Пароль</label>
-        <input type="password" name="password" required />
+        <input type="password" placeholder="Введите пароль" name="password" required />
     </div>
-    <button type="submit">Войти</button>
+    <button type="submit"onfocus="AnimationEffect">Войти</button>
 </form>
 
 @if (!ViewData.ModelState.IsValid)

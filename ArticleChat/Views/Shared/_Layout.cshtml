@@ -22,16 +22,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Comment" asp-action="Comment">Комментарии</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Comment" asp-action="Index">Комментарии</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Tag">Теги</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Home">Теги</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="User">Пользователи</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Пользователи</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Role">Роли</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">Роли</a>
                         </li>
                         <!-- Проверка, вошел ли пользователь в систему -->
                         @if (User.Identity!.IsAuthenticated)
